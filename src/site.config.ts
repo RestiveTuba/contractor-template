@@ -19,47 +19,22 @@ export type SiteConfig = {
 };
 
 export const siteConfig: SiteConfig = {
-  businessName: "Meridian Home Services",
-  ownerFirstName: "Alex",
-  phone: "(845) 555-0147",
-  email: "hello@meridianhomeservices.com",
-  towns: [
-    "Rockland County",
-    "Pearl River",
-    "Nanuet",
-    "Nyack",
-    "Suffern",
-    "New City",
-    "Spring Valley",
-    "Haverstraw",
-  ],
-  services: [
-    "Heating & Cooling",
-    "Plumbing & Drain",
-    "Electrical Work",
-    "Roofing & Gutters",
-    "Landscaping",
-    "General Repairs",
-  ],
-  yearsInBusiness: "30+",
+  businessName: "Rockland Home Services",
+  ownerFirstName: "Mike",
+  phone: "(845) 555-0198",
+  email: "info@rocklandhomeservices.com",
+  towns: ["Pearl River", "Nanuet", "Nyack", "Suffern", "New City"],
+  services: ["HVAC & Heating", "Plumbing", "Electrical", "Roofing", "General Repairs"],
+  yearsInBusiness: "12",
   hours: "Mon-Fri: 7:00 AM-6:00 PM\nSaturday: 8:00 AM-2:00 PM\nSunday: Emergency calls only",
   reviews: [
-    {
-      name: "Linda M.",
-      text: "They came out the same afternoon my furnace died. The tech explained everything before he touched it, and the price was exactly what he quoted. I've been burned by other contractors - not these guys.",
-    },
-    {
-      name: "Robert T.",
-      text: "Third time using them. First time for the AC, second for the water heater, now the panel upgrade. Every time: on time, no mess, no nickel-and-diming. It's nice to have a contractor you just trust.",
-    },
-    {
-      name: "Karen S.",
-      text: "I called four contractors. Three gave me runaround on timing. Meridian came the next morning, diagnosed the problem in 20 minutes, and had parts on the truck. Done before lunch. Highly recommend.",
-    },
+    { name: "Tom R.", text: "Mike and his team showed up on time and fixed our heating unit the same day. Honest pricing, no surprises." },
+    { name: "Lisa M.", text: "Best plumber in Rockland County. Have used them twice now and will call again without hesitation." },
+    { name: "Dave K.", text: "Electrical panel replacement done clean and fast. These guys know what they are doing." },
   ],
-  brandColor: "#C84B11",
+  brandColor: "#1a56db",
   logoUrl: "",
-  notes: "Licensed and insured contractor serving Rockland County since 1994.",
+  notes: "Licensed and insured contractor serving Rockland County.",
 };
 
 export default siteConfig;
