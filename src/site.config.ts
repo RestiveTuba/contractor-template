@@ -16,7 +16,6 @@ export type SiteConfig = {
   brandColor: string;
   logoUrl: string;
   notes: string;
-  getformId?: string;
 };
 
 export const siteConfig: SiteConfig = {
@@ -36,7 +35,6 @@ export const siteConfig: SiteConfig = {
   brandColor: "#1a56db",
   logoUrl: "",
   notes: "Licensed and insured contractor serving Rockland County.",
-  getformId: "ybivc3204fx",
 };
 
 export default siteConfig;

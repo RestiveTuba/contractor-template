@@ -59,24 +59,18 @@ export function ContactForm() {
     setSubmitting(true);
     setSubmitError("");
     try {
-      const res = await fetch(`https://getform.io/f/${config.getformId}`, {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          blocks: [
-            { type: "sender", properties: { firstName: form.name } },
-            { type: "text", name: "phone", value: form.phone },
-            { type: "text", name: "service", value: form.service },
-            ...(form.address ? [{ type: "text", name: "address", value: form.address }] : []),
-            ...(form.message ? [{ type: "text", name: "message", value: form.message }] : []),
-          ],
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
       });
       const data = await res.json();
-      if (data.success) {
+      if (data.ok) {
         setSubmitted(true);
+      } else if (res.status === 503) {
+        setSubmitError("Contact form not configured. Please call us directly.");
       } else {
-        setSubmitError(data.message || "Something went wrong. Please call us directly.");
+        setSubmitError("Something went wrong. Please call us directly.");
       }
     } catch {
       setSubmitError("Could not send. Please call us directly.");
@@ -174,7 +168,7 @@ export function ContactForm() {
                   {config.phone}
                 </a>
               </div>
-            ) : !config.getformId ? (
+            ) : !config.email ? (
               <div className="bg-white border border-warm-border p-10 flex flex-col items-center text-center gap-6">
                 <Phone size={40} strokeWidth={1.5} className="text-brand" />
                 <div>
