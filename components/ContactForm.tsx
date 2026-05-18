@@ -59,15 +59,24 @@ export function ContactForm() {
     setSubmitting(true);
     setSubmitError("");
     try {
-      const res = await fetch(`https://formspree.io/f/${config.formspreeId}`, {
+      const res = await fetch(`https://getform.io/f/${config.getformId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          blocks: [
+            { type: "sender", properties: { firstName: form.name } },
+            { type: "text", name: "phone", value: form.phone },
+            { type: "text", name: "service", value: form.service },
+            ...(form.address ? [{ type: "text", name: "address", value: form.address }] : []),
+            ...(form.message ? [{ type: "text", name: "message", value: form.message }] : []),
+          ],
+        }),
       });
-      if (res.ok) {
+      const data = await res.json();
+      if (data.success) {
         setSubmitted(true);
       } else {
-        setSubmitError("Something went wrong. Please call us directly.");
+        setSubmitError(data.message || "Something went wrong. Please call us directly.");
       }
     } catch {
       setSubmitError("Could not send. Please call us directly.");
@@ -165,7 +174,7 @@ export function ContactForm() {
                   {config.phone}
                 </a>
               </div>
-            ) : !config.formspreeId ? (
+            ) : !config.getformId ? (
               <div className="bg-white border border-warm-border p-10 flex flex-col items-center text-center gap-6">
                 <Phone size={40} strokeWidth={1.5} className="text-brand" />
                 <div>
