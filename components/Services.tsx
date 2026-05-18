@@ -15,7 +15,7 @@ const serviceAssets = [
   },
   {
     icon: Zap,
-    image: "https://images.unsplash.com/photo-1621905251189-08b45249ff78?w=600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&h=400&fit=crop",
   },
   {
     icon: Home,
