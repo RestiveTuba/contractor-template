@@ -7,27 +7,27 @@ import { FadeIn } from "./FadeIn";
 const serviceAssets = [
   {
     icon: Thermometer,
-    image: "https://placehold.co/600x400/2563eb/ffffff?text=HVAC",
+    image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&auto=format&fit=crop",
   },
   {
     icon: Droplets,
-    image: "https://placehold.co/600x400/2563eb/ffffff?text=Plumbing",
+    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&auto=format&fit=crop",
   },
   {
     icon: Zap,
-    image: "https://placehold.co/600x400/2563eb/ffffff?text=Electrical",
+    image: "https://images.unsplash.com/photo-1621905251189-08b45249ff78?w=600&auto=format&fit=crop",
   },
   {
     icon: Home,
-    image: "https://placehold.co/600x400/2563eb/ffffff?text=Roofing",
+    image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&auto=format&fit=crop",
   },
   {
     icon: TreeDeciduous,
-    image: "https://placehold.co/600x400/2563eb/ffffff?text=Landscaping",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop",
   },
   {
     icon: Wrench,
-    image: "https://placehold.co/600x400/2563eb/ffffff?text=General+Repairs",
+    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&auto=format&fit=crop",
   },
 ];
 

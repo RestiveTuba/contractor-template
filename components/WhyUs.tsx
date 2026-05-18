@@ -42,7 +42,7 @@ export function WhyUs() {
               {/* REPLACE: Photo — contractor, worker, or team. Swap keywords. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://placehold.co/800x900/2563eb/ffffff?text=Our+Team" /* REPLACE: swap photo ID */
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&auto=format&fit=crop"
                 alt="Our team at work"
                 className="w-full h-[480px] sm:h-[580px] object-cover"
               />
