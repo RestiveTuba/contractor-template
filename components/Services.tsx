@@ -7,27 +7,27 @@ import { FadeIn } from "./FadeIn";
 const serviceAssets = [
   {
     icon: Thermometer,
-    image: "https://images.unsplash.com/photo-1621347085688-beacba5c2b6c?auto=format&fit=crop&w=600&h=400&q=80",
+    image: "https://placehold.co/600x400/2563eb/ffffff?text=HVAC",
   },
   {
     icon: Droplets,
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&h=400&q=80",
+    image: "https://placehold.co/600x400/2563eb/ffffff?text=Plumbing",
   },
   {
     icon: Zap,
-    image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=600&h=400&q=80",
+    image: "https://placehold.co/600x400/2563eb/ffffff?text=Electrical",
   },
   {
     icon: Home,
-    image: "https://images.unsplash.com/photo-1632923057155-b6cf3b1da37c?auto=format&fit=crop&w=600&h=400&q=80",
+    image: "https://placehold.co/600x400/2563eb/ffffff?text=Roofing",
   },
   {
     icon: TreeDeciduous,
-    image: "https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=600&h=400&q=80",
+    image: "https://placehold.co/600x400/2563eb/ffffff?text=Landscaping",
   },
   {
     icon: Wrench,
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&h=400&q=80",
+    image: "https://placehold.co/600x400/2563eb/ffffff?text=General+Repairs",
   },
 ];
 

@@ -17,8 +17,8 @@ export function Hero() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80')",
-            /* REPLACE: Swap photo ID for your trade — find IDs at unsplash.com */
+            "url('https://placehold.co/1920x1080/1a1a2e/ffffff?text=Hero')",
+            /* REPLACE: Swap for a real photo of your trade — find IDs at unsplash.com */
         }}
         aria-hidden="true"
       />
