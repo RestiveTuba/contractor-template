@@ -41,6 +41,7 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const set = (field: keyof FormState) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -56,10 +57,23 @@ export function ContactForm() {
       return;
     }
     setSubmitting(true);
-    // REPLACE: Wire up to your form backend (Formspree, Resend, etc.)
-    await new Promise((res) => setTimeout(res, 900));
-    setSubmitted(true);
-    setSubmitting(false);
+    setSubmitError("");
+    try {
+      const res = await fetch(`https://formspree.io/f/${config.formspreeId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setSubmitError("Something went wrong. Please call us directly.");
+      }
+    } catch {
+      setSubmitError("Could not send. Please call us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -131,7 +145,7 @@ export function ContactForm() {
             </div>
           </FadeIn>
 
-          {/* Right: Form */}
+          {/* Right: Form or fallback */}
           <FadeIn direction="right">
             {submitted ? (
               <div className="bg-white border border-warm-border p-10 flex flex-col items-center text-center gap-4">
@@ -140,7 +154,6 @@ export function ContactForm() {
                   We&apos;ll Be In Touch
                 </h3>
                 <p className="font-body text-warm-gray max-w-sm">
-                  {/* REPLACE: Confirmation message */}
                   Thanks — {config.ownerFirstName || "we"} will follow up soon during business hours.
                   For urgent issues, call us directly.
                 </p>
@@ -149,6 +162,25 @@ export function ContactForm() {
                   className="mt-2 inline-flex items-center gap-2 text-brand font-display font-bold uppercase tracking-wide"
                 >
                   <Phone size={16} strokeWidth={2.5} />
+                  {config.phone}
+                </a>
+              </div>
+            ) : !config.formspreeId ? (
+              <div className="bg-white border border-warm-border p-10 flex flex-col items-center text-center gap-6">
+                <Phone size={40} strokeWidth={1.5} className="text-brand" />
+                <div>
+                  <h3 className="font-display font-black text-2xl uppercase text-charcoal mb-2">
+                    Ready to Help
+                  </h3>
+                  <p className="font-body text-warm-gray">
+                    Call us to request a free estimate — we&apos;ll get back to you fast.
+                  </p>
+                </div>
+                <a
+                  href={phoneHref()}
+                  className="inline-flex items-center gap-2 bg-brand text-white font-display font-black uppercase tracking-wider text-xl px-8 py-4 hover:bg-brand-dark transition-colors"
+                >
+                  <Phone size={20} strokeWidth={2.5} />
                   {config.phone}
                 </a>
               </div>
@@ -278,6 +310,10 @@ export function ContactForm() {
                     className="font-body border-warm-border focus-visible:ring-brand/30 focus-visible:border-brand resize-none"
                   />
                 </div>
+
+                {submitError && (
+                  <p className="font-body text-sm text-red-500 text-center">{submitError}</p>
+                )}
 
                 {/* Submit */}
                 <button
