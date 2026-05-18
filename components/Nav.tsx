@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Phone, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { brandNameParts, config, phoneHref } from "@/src/site.helpers";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -20,6 +21,7 @@ export function Nav() {
     { label: "Reviews", href: "#reviews" },
     { label: "Contact", href: "#contact" },
   ];
+  const name = brandNameParts();
 
   return (
     <>
@@ -37,9 +39,8 @@ export function Nav() {
             className="font-display text-2xl sm:text-3xl font-black tracking-wide text-white uppercase leading-none"
             aria-label="Home"
           >
-            {/* REPLACE: Business Name — first word gets brand color treatment */}
-            <span className="text-brand">Meridian</span>
-            <span className="text-white ml-1.5">Home Services</span>
+            <span className="text-brand">{name.first}</span>
+            {name.rest && <span className="text-white ml-1.5">{name.rest}</span>}
           </a>
 
           {/* Desktop: nav links + phone */}
@@ -57,7 +58,7 @@ export function Nav() {
 
           {/* Phone */}
           <a
-            href="tel:+18455550147" /* REPLACE: Phone Number */
+            href={phoneHref()}
             className="hidden sm:flex items-center gap-2 text-brand hover:text-brand-light transition-colors group"
             aria-label="Call us"
           >
@@ -66,9 +67,8 @@ export function Nav() {
               className="group-hover:scale-110 transition-transform"
               strokeWidth={2.5}
             />
-            {/* REPLACE: Phone Number */}
             <span className="font-display font-bold text-xl sm:text-2xl tracking-wide leading-none">
-              (845) 555-0147
+              {config.phone}
             </span>
           </a>
 
@@ -107,13 +107,12 @@ export function Nav() {
           ))}
           <div className="mt-4 border-t border-white/10 pt-8 w-full flex flex-col items-center gap-2">
             <a
-              href="tel:+18455550147" /* REPLACE: Phone Number */
+              href={phoneHref()}
               className="flex items-center gap-3 text-brand"
             >
               <Phone size={22} strokeWidth={2.5} />
-              {/* REPLACE: Phone Number */}
               <span className="font-display font-bold text-3xl">
-                (845) 555-0147
+                {config.phone}
               </span>
             </a>
           </div>

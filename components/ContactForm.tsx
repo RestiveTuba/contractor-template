@@ -4,9 +4,9 @@ import { useState } from "react";
 import { Phone, Clock, MapPin, CheckCircle2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select } from "@/components/ui/select";
 import { FadeIn } from "./FadeIn";
 import { cn } from "@/lib/utils";
+import { config, hoursLines, phoneHref, serviceArea } from "@/src/site.helpers";
 
 type FormState = {
   name: string;
@@ -18,22 +18,7 @@ type FormState = {
 
 type Errors = Partial<Record<keyof FormState, string>>;
 
-/*
-  REPLACE: Update service options with your actual offerings
-*/
-const serviceOptions = [
-  "Heating & Cooling (HVAC)",
-  "Plumbing & Drain",
-  "Electrical",
-  "Roofing & Gutters",
-  "Landscaping",
-  "General Home Repair",
-  "Other / Not Sure",
-];
-
-/*
-  REPLACE: Update hours, service areas, and contact info below
-*/
+const serviceOptions = config.services.length ? config.services : ["General Contracting", "Other / Not Sure"];
 
 function validate(form: FormState): Errors {
   const errors: Errors = {};
@@ -100,7 +85,7 @@ export function ContactForm() {
             <div>
               {/* Big phone */}
               <a
-                href="tel:+18455550147" /* REPLACE: Phone Number */
+                href={phoneHref()}
                 className="group block mb-8"
               >
                 <span className="font-body text-xs uppercase tracking-widest text-warm-gray">
@@ -108,9 +93,8 @@ export function ContactForm() {
                 </span>
                 <div className="flex items-center gap-2 mt-1 group-hover:text-brand-dark transition-colors">
                   <Phone size={22} strokeWidth={2} className="text-brand shrink-0 mt-1" />
-                  {/* REPLACE: Phone Number */}
                   <span className="font-display font-black text-4xl sm:text-5xl text-brand leading-none tracking-tight">
-                    (845) 555-0147
+                    {config.phone}
                   </span>
                 </div>
               </a>
@@ -124,10 +108,9 @@ export function ContactForm() {
                       Business Hours
                     </div>
                     <div className="font-body text-warm-gray text-sm leading-relaxed space-y-0.5">
-                      {/* REPLACE: Business Hours */}
-                      <div>Mon – Fri: 7:00 AM – 6:00 PM</div>
-                      <div>Saturday: 8:00 AM – 2:00 PM</div>
-                      <div>Sunday: Emergency calls only</div>
+                      {hoursLines().map((line) => (
+                        <div key={line}>{line}</div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -140,9 +123,7 @@ export function ContactForm() {
                       Service Area
                     </div>
                     <div className="font-body text-warm-gray text-sm leading-relaxed">
-                      {/* REPLACE: Service Area cities/counties */}
-                      Rockland County · Pearl River · Nanuet · Nyack ·
-                      Suffern · New City · Spring Valley · Haverstraw
+                      {serviceArea()}
                     </div>
                   </div>
                 </div>
@@ -160,16 +141,15 @@ export function ContactForm() {
                 </h3>
                 <p className="font-body text-warm-gray max-w-sm">
                   {/* REPLACE: Confirmation message */}
-                  Thanks — we typically follow up within 2 hours during business hours.
+                  Thanks — {config.ownerFirstName || "we"} will follow up soon during business hours.
                   For urgent issues, call us directly.
                 </p>
                 <a
-                  href="tel:+18455550147" /* REPLACE: Phone Number */
+                  href={phoneHref()}
                   className="mt-2 inline-flex items-center gap-2 text-brand font-display font-bold uppercase tracking-wide"
                 >
                   <Phone size={16} strokeWidth={2.5} />
-                  {/* REPLACE: Phone Number */}
-                  (845) 555-0147
+                  {config.phone}
                 </a>
               </div>
             ) : (
@@ -238,7 +218,7 @@ export function ContactForm() {
                     id="address"
                     value={form.address}
                     onChange={set("address")}
-                    placeholder="123 Main St, Pearl River, NY"
+                    placeholder="123 Main St"
                     className="font-body h-11 border-warm-border focus-visible:ring-brand/30 focus-visible:border-brand"
                   />
                 </div>

@@ -1,7 +1,9 @@
 import { Phone } from "lucide-react";
+import { brandNameParts, config, phoneHref, yearsLabel } from "@/src/site.helpers";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const name = brandNameParts();
 
   return (
     <footer className="bg-charcoal-deep text-white/60 py-12">
@@ -11,25 +13,23 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="font-display font-black text-2xl uppercase text-white tracking-wide leading-none mb-2">
-              {/* REPLACE: Business Name */}
-              <span className="text-brand">Meridian</span> Home Services
+              <span className="text-brand">{name.first}</span>
+              {name.rest && <> {name.rest}</>}
             </div>
             <p className="font-body italic text-sm text-white/40 max-w-xs">
-              {/* REPLACE: Footer tagline */}
-              Doing it right the first time since 1994.
+              Doing it right with {yearsLabel().toLowerCase()} in business.
             </p>
           </div>
 
           {/* Phone */}
           <a
-            href="tel:+18455550147" /* REPLACE: Phone Number */
+            href={phoneHref()}
             className="flex items-center gap-2 text-brand hover:text-brand-light transition-colors"
             aria-label="Call us"
           >
             <Phone size={16} strokeWidth={2.5} />
-            {/* REPLACE: Phone Number */}
             <span className="font-display font-bold text-xl tracking-wide">
-              (845) 555-0147
+              {config.phone}
             </span>
           </a>
         </div>
@@ -40,12 +40,10 @@ export function Footer() {
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-body">
           <p>
-            {/* REPLACE: Business Name, State License Number */}
-            &copy; {year} Meridian Home Services LLC · All rights reserved
+            &copy; {year} {config.businessName} · All rights reserved
           </p>
           <p className="text-white/30">
-            {/* REPLACE: State, License number */}
-            NY Licensed Contractor · ROC-12345 · Fully Insured
+            Licensed Contractor · Fully Insured
           </p>
         </div>
       </div>

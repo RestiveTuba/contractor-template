@@ -1,43 +1,16 @@
 "use client";
 
+import { config, primaryTown } from "@/src/site.helpers";
 import { FadeIn } from "./FadeIn";
 
-/*
-  REPLACE: Swap in real customer reviews. Keep quotes conversational —
-  generic glowing reviews look fake to homeowners.
-*/
-const reviews = [
+const fallbackReviews = [
   {
-    stars: 5,
-    /* REPLACE: Review 1 quote */
-    quote:
-      "They came out the same afternoon my furnace died. The tech explained everything before he touched it, and the price was exactly what he quoted. I've been burned by other contractors — not these guys.",
-    /* REPLACE: Customer 1 name */
-    name: "Linda M.",
-    /* REPLACE: Customer 1 city */
-    city: "Pearl River, NY",
-  },
-  {
-    stars: 5,
-    /* REPLACE: Review 2 quote */
-    quote:
-      "Third time using them. First time for the AC, second for the water heater, now the panel upgrade. Every time: on time, no mess, no nickel-and-diming. It's nice to have a contractor you just trust.",
-    /* REPLACE: Customer 2 name */
-    name: "Robert T.",
-    /* REPLACE: Customer 2 city */
-    city: "Nanuet, NY",
-  },
-  {
-    stars: 5,
-    /* REPLACE: Review 3 quote */
-    quote:
-      "I called four contractors. Three gave me runaround on timing. Meridian came the next morning, diagnosed the problem in 20 minutes, and had parts on the truck. Done before lunch. Highly recommend.",
-    /* REPLACE: Customer 3 name */
-    name: "Karen S.",
-    /* REPLACE: Customer 3 city */
-    city: "Suffern, NY",
+    name: "Local Customer",
+    text: "Responsive, professional, and easy to work with from the first call through the finished job.",
   },
 ];
+
+const reviews = (config.reviews.length ? config.reviews : fallbackReviews).slice(0, 3);
 
 function Stars({ count }: { count: number }) {
   return (
@@ -68,7 +41,6 @@ export function Reviews() {
             <p className="font-body text-sm uppercase tracking-[0.2em] text-brand font-medium mb-3">
               Customer Reviews
             </p>
-            {/* REPLACE: Reviews heading */}
             <h2 className="font-display font-black text-5xl sm:text-6xl lg:text-7xl uppercase text-charcoal leading-none tracking-tight">
               What People
               <br />
@@ -79,22 +51,17 @@ export function Reviews() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {reviews.map((review, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
+            <FadeIn key={`${review.name}-${i}`} delay={i * 0.1}>
               <div className="h-full flex flex-col border border-warm-border bg-white p-7 hover:border-brand/30 hover:shadow-md transition-all duration-300">
-                {/* Stars */}
-                <Stars count={review.stars} />
+                <Stars count={5} />
 
-                {/* Quote — Lora italic for warmth */}
                 <blockquote className="mt-4 flex-1">
                   <p className="font-body italic text-charcoal/80 leading-relaxed text-[0.95rem] sm:text-base">
-                    {/* REPLACE: Review quote */}
-                    &ldquo;{review.quote}&rdquo;
+                    &ldquo;{review.text}&rdquo;
                   </p>
                 </blockquote>
 
-                {/* Attribution */}
                 <div className="mt-6 pt-5 border-t border-warm-border flex items-center gap-3">
-                  {/* Initials avatar */}
                   <div className="w-9 h-9 rounded-full bg-surface flex items-center justify-center shrink-0">
                     <span className="font-display font-black text-sm text-brand">
                       {review.name.charAt(0)}
@@ -102,15 +69,12 @@ export function Reviews() {
                   </div>
                   <div>
                     <div className="font-display font-bold text-sm uppercase tracking-wide text-charcoal">
-                      {/* REPLACE: Customer name */}
                       {review.name}
                     </div>
                     <div className="font-body text-xs text-warm-gray">
-                      {/* REPLACE: Customer city */}
-                      {review.city}
+                      {primaryTown()}
                     </div>
                   </div>
-                  {/* Google G mark */}
                   <div className="ml-auto">
                     <svg width="18" height="18" viewBox="0 0 24 24" aria-label="Google review">
                       <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -125,12 +89,10 @@ export function Reviews() {
           ))}
         </div>
 
-        {/* CTA below reviews */}
         <FadeIn delay={0.3}>
           <div className="mt-12 text-center">
             <p className="font-body text-warm-gray text-sm mb-4">
-              {/* REPLACE: Review count and platform */}
-              4.9 stars across 300+ Google reviews
+              5-star service across {primaryTown()} and nearby towns
             </p>
             <a
               href="#contact"

@@ -1,4 +1,5 @@
 import { ShieldCheck, Calendar, Star, Zap } from "lucide-react";
+import { config, yearsLabel } from "@/src/site.helpers";
 
 const items = [
   {
@@ -10,14 +11,12 @@ const items = [
   {
     icon: Calendar,
     label: "Years in Business",
-    /* REPLACE: Years in business */
-    sub: "30+ Years",
+    sub: yearsLabel(),
   },
   {
     icon: Star,
     label: "Google Rating",
-    /* REPLACE: Review count */
-    sub: "5 Stars · 300+ Reviews",
+    sub: config.reviews.length ? `5 Stars · ${config.reviews.length}+ Reviews` : "5-Star Service",
   },
   {
     icon: Zap,

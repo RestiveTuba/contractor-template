@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckCircle2 } from "lucide-react";
+import { primaryTown, serviceArea, yearsLabel } from "@/src/site.helpers";
 import { FadeIn } from "./FadeIn";
 
 /*
@@ -18,9 +19,9 @@ const points = [
     body: "We quote before we start. The number we give you is the number on your invoice.",
   },
   {
-    title: "30+ years in the county",
+    title: `${yearsLabel()} in the area`,
     /* REPLACE: Bullet 3 detail — years, service area */
-    body: "We've been your neighbor since 1994. Our reputation is built on repeat customers and referrals.",
+    body: `We serve ${serviceArea()}. Our reputation is built on repeat customers and referrals.`,
   },
   {
     title: "We clean up after ourselves",
@@ -59,14 +60,12 @@ export function WhyUs() {
               {/* Years callout — bottom left corner */}
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="border-l-4 border-brand pl-5">
-                  {/* REPLACE: Years in business */}
                   <div className="font-display font-black text-6xl text-white leading-none">
-                    30+
+                    {yearsLabel().replace(/\s*years?/i, "")}
                   </div>
                   <div className="font-body text-white/70 text-sm mt-1 tracking-wide uppercase">
                     Years serving{" "}
-                    {/* REPLACE: Service area */}
-                    Rockland County
+                    {primaryTown()}
                   </div>
                 </div>
               </div>

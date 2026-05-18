@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Big_Shoulders, Lora } from "next/font/google";
+import { brandCssVariables, config, siteDescription } from "@/src/site.helpers";
 import "./globals.css";
 
 /*
@@ -24,12 +25,8 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  /* REPLACE: Business Name */
-  title: "Meridian Home Services | Licensed Contractor",
-  /* REPLACE: Business Description */
-  description:
-    "Licensed and insured contractor serving Rockland County since 1994. HVAC, plumbing, electrical, and roofing. Call for a free estimate.",
-  /* REPLACE: Business Phone */
+  title: `${config.businessName} | Licensed Contractor`,
+  description: siteDescription(),
   other: { "format-detection": "telephone=yes" },
 };
 
@@ -42,6 +39,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${bigShoulders.variable} ${lora.variable} h-full antialiased`}
+      style={brandCssVariables()}
     >
       <body className="min-h-full flex flex-col font-body">{children}</body>
     </html>

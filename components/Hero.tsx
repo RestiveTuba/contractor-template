@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Phone, ChevronDown } from "lucide-react";
+import { brandNameParts, config, establishedLabel, phoneHref, primaryTown, yearsLabel } from "@/src/site.helpers";
 
 export function Hero() {
+  const name = brandNameParts();
+
   return (
     <section
       className="relative min-h-screen flex flex-col justify-end pb-16 sm:pb-24 overflow-hidden"
@@ -40,9 +43,8 @@ export function Hero() {
           className="flex items-center gap-3 mb-5"
         >
           <div className="h-px w-10 bg-brand" />
-          {/* REPLACE: Year Established */}
           <span className="font-body text-sm uppercase tracking-[0.2em] text-brand font-medium">
-            Licensed &amp; Insured · Est. 1994
+            {establishedLabel()}
           </span>
         </motion.div>
 
@@ -54,9 +56,13 @@ export function Hero() {
           className="font-display font-black uppercase text-white leading-none tracking-tight"
           style={{ fontSize: "clamp(58px, 10vw, 140px)" }}
         >
-          {/* REPLACE: Business Name */}
-          Meridian<br />
-          <span className="text-brand">Home</span> Services
+          {name.first}
+          {name.rest && (
+            <>
+              <br />
+              <span className="text-brand">{name.rest}</span>
+            </>
+          )}
         </motion.h1>
 
         {/* Tagline */}
@@ -66,9 +72,8 @@ export function Hero() {
           transition={{ duration: 0.65, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
           className="mt-5 font-body italic text-white/75 text-lg sm:text-xl md:text-2xl max-w-xl leading-snug"
         >
-          {/* REPLACE: Tagline */}
-          Rockland County's most trusted trades contractor&nbsp;—
-          <br className="hidden sm:block" /> doing it right the first time since 1994.
+          {primaryTown()}'s trusted contractor&nbsp;—
+          <br className="hidden sm:block" /> doing it right with {yearsLabel().toLowerCase()} in business.
         </motion.p>
 
         {/* CTAs */}
@@ -80,12 +85,11 @@ export function Hero() {
         >
           {/* Primary CTA — tel link */}
           <a
-            href="tel:+18455550147" /* REPLACE: Phone Number */
+            href={phoneHref()}
             className="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-white font-display font-bold uppercase tracking-wide text-base sm:text-lg px-7 py-4 transition-colors duration-200 group"
           >
             <Phone size={18} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" />
-            {/* REPLACE: Phone Number */}
-            Call Now — (845) 555-0147
+            Call Now — {config.phone}
           </a>
 
           {/* Secondary CTA — scroll to form */}
