@@ -40,7 +40,7 @@ export async function POST(request: Request) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: "Website Contact <onboarding@resend.dev>",
+      from: "Website Contact <jackson@pearlriverdesign.me>",
       to: [toEmail],
       subject: `New estimate request — ${esc(service)}`,
       html,
