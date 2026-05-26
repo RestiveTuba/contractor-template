@@ -59,18 +59,35 @@ export function ContactForm() {
     setSubmitting(true);
     setSubmitError("");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await res.json();
-      if (data.ok) {
+      const webhookUrl = process.env.NEXT_PUBLIC_ZAPIER_WEBHOOK_URL;
+      if (webhookUrl) {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: form.name,
+            phone: form.phone,
+            service: form.service,
+            message: form.message,
+            address: form.address,
+            business: config.businessName,
+          }),
+        });
         setSubmitted(true);
-      } else if (res.status === 503) {
-        setSubmitError("Contact form not configured. Please call us directly.");
       } else {
-        setSubmitError("Something went wrong. Please call us directly.");
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        });
+        const data = await res.json();
+        if (data.ok) {
+          setSubmitted(true);
+        } else if (res.status === 503) {
+          setSubmitError("Contact form not configured. Please call us directly.");
+        } else {
+          setSubmitError("Something went wrong. Please call us directly.");
+        }
       }
     } catch {
       setSubmitError("Could not send. Please call us directly.");
@@ -165,25 +182,6 @@ export function ContactForm() {
                   className="mt-2 inline-flex items-center gap-2 text-brand font-display font-bold uppercase tracking-wide"
                 >
                   <Phone size={16} strokeWidth={2.5} />
-                  {config.phone}
-                </a>
-              </div>
-            ) : !config.email ? (
-              <div className="bg-white border border-warm-border p-10 flex flex-col items-center text-center gap-6">
-                <Phone size={40} strokeWidth={1.5} className="text-brand" />
-                <div>
-                  <h3 className="font-display font-black text-2xl uppercase text-charcoal mb-2">
-                    Ready to Help
-                  </h3>
-                  <p className="font-body text-warm-gray">
-                    Call us to request a free estimate — we&apos;ll get back to you fast.
-                  </p>
-                </div>
-                <a
-                  href={phoneHref()}
-                  className="inline-flex items-center gap-2 bg-brand text-white font-display font-black uppercase tracking-wider text-xl px-8 py-4 hover:bg-brand-dark transition-colors"
-                >
-                  <Phone size={20} strokeWidth={2.5} />
                   {config.phone}
                 </a>
               </div>
