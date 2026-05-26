@@ -15,6 +15,7 @@ export type SiteConfig = {
   reviews: SiteReview[];
   brandColor: string;
   logoUrl: string;
+  businessLocation?: string;
   notes: string;
 };
 

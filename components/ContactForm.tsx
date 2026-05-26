@@ -133,6 +133,13 @@ export function ContactForm() {
                 </div>
               </a>
 
+              {config.businessLocation && (
+                <div className="flex items-center gap-2 mt-4 mb-6">
+                  <MapPin size={16} strokeWidth={1.75} className="text-brand shrink-0" />
+                  <span className="font-body text-sm text-warm-gray">{config.businessLocation}</span>
+                </div>
+              )}
+
               <div className="space-y-6 border-t border-warm-border pt-8">
                 {/* Hours */}
                 <div className="flex items-start gap-4">
