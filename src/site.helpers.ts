@@ -16,6 +16,21 @@ export function primaryTown() {
   return config.towns[0] || "your area";
 }
 
+export function primaryCity(): string {
+  const loc = config.businessLocation;
+  if (loc) {
+    const parts = loc.split(",");
+    if (parts.length >= 2) {
+      const city = parts[1].trim()
+        .replace(/\s+[A-Z]{2}\s+\d{5}(-\d{4})?$/, "")
+        .replace(/\s+[A-Z]{2}$/, "")
+        .trim();
+      if (city) return city;
+    }
+  }
+  return config.towns[0] || "your area";
+}
+
 export function yearsLabel() {
   const years = String(config.yearsInBusiness || "").trim();
   if (!years) return "Trusted";

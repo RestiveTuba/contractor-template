@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Phone, ChevronDown } from "lucide-react";
-import { brandNameParts, config, establishedLabel, phoneHref, primaryTown, yearsLabel } from "@/src/site.helpers";
+import { brandNameParts, config, establishedLabel, phoneHref, primaryCity, primaryTown, yearsLabel } from "@/src/site.helpers";
 
 export function Hero() {
   const name = brandNameParts();
@@ -76,7 +76,7 @@ export function Hero() {
           transition={{ duration: 0.65, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
           className="mt-5 font-body italic text-white/75 text-lg sm:text-xl md:text-2xl max-w-xl leading-snug"
         >
-          {primaryTown()}'s trusted contractor&nbsp;—
+          {primaryCity()}'s trusted contractor&nbsp;—
           <br className="hidden sm:block" /> doing it right with {yearsLabel().toLowerCase()} in business.
         </motion.p>
 
