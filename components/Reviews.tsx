@@ -72,7 +72,7 @@ export function Reviews() {
                       {review.name}
                     </div>
                     <div className="font-body text-xs text-warm-gray">
-                      {primaryTown()}
+                      {review.location || primaryTown()}
                     </div>
                   </div>
                   <div className="ml-auto">

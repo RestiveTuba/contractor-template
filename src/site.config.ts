@@ -1,6 +1,7 @@
 export type SiteReview = {
   name: string;
   text: string;
+  location?: string;
 };
 
 export type SiteConfig = {
