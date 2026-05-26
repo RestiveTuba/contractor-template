@@ -39,10 +39,15 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="flex items-center gap-3 mb-5"
+          className="mb-5"
         >
-          <div className="h-px w-10 bg-brand" />
-          <span className="font-body text-sm uppercase tracking-[0.2em] text-brand font-medium">
+          <span
+            className="inline-block font-body text-sm uppercase tracking-[0.2em] text-white font-medium px-4 py-1.5"
+            style={{
+              background: "rgba(255,255,255,0.15)",
+              border: "1px solid rgba(255,255,255,0.3)",
+            }}
+          >
             {establishedLabel()}
           </span>
         </motion.div>
