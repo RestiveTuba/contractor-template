@@ -39,8 +39,15 @@ export function Nav() {
             className="font-display text-2xl sm:text-3xl font-black tracking-wide text-white uppercase leading-none"
             aria-label="Home"
           >
-            <span className="text-brand">{name.first}</span>
-            {name.rest && <span className="text-white ml-1.5">{name.rest}</span>}
+            {config.logoUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={config.logoUrl} alt={config.businessName} className="h-10 sm:h-12 w-auto object-contain" />
+            ) : (
+              <>
+                <span className="text-brand">{name.first}</span>
+                {name.rest && <span className="text-white ml-1.5">{name.rest}</span>}
+              </>
+            )}
           </a>
 
           {/* Desktop: nav links + phone */}

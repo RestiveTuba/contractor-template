@@ -13,8 +13,15 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="font-display font-black text-2xl uppercase text-white tracking-wide leading-none mb-2">
-              <span className="text-brand">{name.first}</span>
-              {name.rest && <> {name.rest}</>}
+              {config.logoUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={config.logoUrl} alt={config.businessName} className="h-9 w-auto object-contain" />
+              ) : (
+                <>
+                  <span className="text-brand">{name.first}</span>
+                  {name.rest && <> {name.rest}</>}
+                </>
+              )}
             </div>
             <p className="font-body italic text-sm text-white/40 max-w-xs">
               Doing it right with {yearsLabel().toLowerCase()} in business.
