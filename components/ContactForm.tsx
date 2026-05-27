@@ -66,9 +66,8 @@ export function ContactForm() {
         body: JSON.stringify({
           name: form.name,
           phone: form.phone,
-          service: form.service,
+          service_needed: form.service,
           message: form.message,
-          address: form.address,
           business_name: config.businessName,
         }),
       });
