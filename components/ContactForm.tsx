@@ -58,7 +58,7 @@ export function ContactForm() {
     }
     setSubmitting(true);
     setSubmitError("");
-    const WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/27638351/4o0v6fk/";
+    const WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/27638351/4ojb06k/";
     try {
       await fetch(WEBHOOK_URL, {
         method: "POST",
