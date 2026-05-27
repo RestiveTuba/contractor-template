@@ -58,37 +58,21 @@ export function ContactForm() {
     }
     setSubmitting(true);
     setSubmitError("");
+    const WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/27638351/4o0v6fk/";
     try {
-      const webhookUrl = process.env.NEXT_PUBLIC_ZAPIER_WEBHOOK_URL;
-      if (webhookUrl) {
-        await fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: form.name,
-            phone: form.phone,
-            service: form.service,
-            message: form.message,
-            address: form.address,
-            business: config.businessName,
-          }),
-        });
-        setSubmitted(true);
-      } else {
-        const res = await fetch("/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form),
-        });
-        const data = await res.json();
-        if (data.ok) {
-          setSubmitted(true);
-        } else if (res.status === 503) {
-          setSubmitError("Contact form not configured. Please call us directly.");
-        } else {
-          setSubmitError("Something went wrong. Please call us directly.");
-        }
-      }
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          service: form.service,
+          message: form.message,
+          address: form.address,
+          business_name: config.businessName,
+        }),
+      });
+      setSubmitted(true);
     } catch {
       setSubmitError("Could not send. Please call us directly.");
     } finally {

@@ -16,7 +16,7 @@ const items = [
   {
     icon: Star,
     label: "Google Rating",
-    sub: config.reviews.length ? `5 Stars · ${config.reviews.length}+ Reviews` : "5-Star Service",
+    sub: config.review1Text ? "5 Stars · 3 Reviews" : "5-Star Service",
   },
   {
     icon: Zap,
