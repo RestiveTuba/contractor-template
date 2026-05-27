@@ -1,4 +1,4 @@
-import { Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 import { brandNameParts, config, phoneHref, yearsLabel } from "@/src/site.helpers";
 
 export function Footer() {
@@ -26,6 +26,12 @@ export function Footer() {
             <p className="font-body italic text-sm text-white/40 max-w-xs">
               Doing it right with {yearsLabel().toLowerCase()} in business.
             </p>
+            {config.businessLocation && (
+              <p className="font-body text-xs text-white/50 mt-1.5 flex items-center gap-1.5">
+                <MapPin size={12} strokeWidth={2} className="text-brand shrink-0" />
+                {config.businessLocation}
+              </p>
+            )}
           </div>
 
           {/* Phone */}
@@ -49,9 +55,15 @@ export function Footer() {
           <p>
             &copy; {year} {config.businessName} · All rights reserved
           </p>
-          <p className="text-white/30">
-            Licensed Contractor · Fully Insured
-          </p>
+          <div className="flex items-center gap-4">
+            <p className="text-white/30">Licensed Contractor · Fully Insured</p>
+            <a
+              href="/privacy"
+              className="text-white/30 hover:text-white/50 transition-colors hover:underline underline-offset-2"
+            >
+              Privacy Policy
+            </a>
+          </div>
         </div>
       </div>
     </footer>
