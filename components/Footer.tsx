@@ -63,6 +63,14 @@ export function Footer() {
             >
               Privacy Policy
             </a>
+            <a
+              href="https://pearlriverdesign.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/30 hover:text-white/50 transition-colors hover:underline underline-offset-2"
+            >
+              Built by Pearl River Design
+            </a>
           </div>
         </div>
       </div>
