@@ -60,17 +60,19 @@ export function ContactForm() {
     setSubmitError("");
     const WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/27638351/4ojb06k/";
     try {
-      await fetch(WEBHOOK_URL, {
+      const response = await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: form.name,
           phone: form.phone,
+          address: form.address,
           service_needed: form.service,
           message: form.message,
           business_name: config.businessName,
         }),
       });
+      if (!response.ok) throw new Error(`Webhook responded with ${response.status}`);
       setSubmitted(true);
     } catch {
       setSubmitError("Could not send. Please call us directly.");

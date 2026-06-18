@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     body: JSON.stringify({
       from: "Website Contact <jackson@pearlriverdesign.me>",
       to: [toEmail],
-      subject: `New estimate request — ${esc(service)}`,
+      subject: `New estimate request — ${service}`,
       html,
     }),
   });
