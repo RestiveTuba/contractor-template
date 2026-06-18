@@ -57,4 +57,4 @@ jobs:
           CODERABBIT_API_KEY: ${{ secrets.CODERABBIT_API_KEY }}
         run: |
           export PATH="$HOME/.local/bin:$PATH"
-          coderabbit review --plain --base-commit "${{ steps.base.outputs.sha }}" | tee "$GITHUB_STEP_SUMMARY" || true
+          coderabbit review --plain --api-key "$CODERABBIT_API_KEY" --base-commit "${{ steps.base.outputs.sha }}" | tee "$GITHUB_STEP_SUMMARY" || true
