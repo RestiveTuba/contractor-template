@@ -58,21 +58,26 @@ export function ContactForm() {
     }
     setSubmitting(true);
     setSubmitError("");
-    const WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/27638351/4ojb06k/";
     try {
-      const response = await fetch(WEBHOOK_URL, {
+      const parts = [
+        form.service && `Service: ${form.service}`,
+        form.address && `Address: ${form.address}`,
+        form.message && form.message,
+      ]
+        .filter(Boolean)
+        .join("\n");
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: form.name,
-          phone: form.phone,
-          address: form.address,
-          service_needed: form.service,
-          message: form.message,
-          business_name: config.businessName,
+          visitor_name: form.name,
+          visitor_phone: form.phone,
+          message: parts,
+          contractor_email: config.email,
         }),
       });
-      if (!response.ok) throw new Error(`Webhook responded with ${response.status}`);
+      const data = await response.json();
+      if (!data.ok) throw new Error(`Contact route responded with ${response.status}`);
       setSubmitted(true);
     } catch {
       setSubmitError("Could not send. Please call us directly.");
