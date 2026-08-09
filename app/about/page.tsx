@@ -66,13 +66,13 @@ export default function AboutPage() {
             <p className="font-body text-warm-gray text-lg leading-relaxed">
               {config.businessName} has served {serviceArea()} for{" "}
               {yearsLabel().toLowerCase()}. We started with one crew and a phone that
-              actually gets answered. Now we handle {siteConfig.services.join(", ").toLowerCase()}{" "}
+              gets answered. Now we handle {siteConfig.services.join(", ").toLowerCase()}{" "}
               across the whole area, and we still show up when we say we will.
             </p>
             <p className="mt-6 font-body text-warm-gray text-lg leading-relaxed">
               {config.ownerFirstName || "Our team"} writes every estimate personally, after
-              someone from our crew has actually seen the job. No call center. Every project
-              gets the same careful, upfront approach, whether it's a small fix or a full job.
+              someone from our crew has seen the job. No call center. Every project
+              gets the same upfront approach, whether it's a small fix or a full job.
             </p>
           </div>
         </section>
