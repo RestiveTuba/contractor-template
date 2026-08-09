@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { config, primaryTown } from "@/src/site.helpers";
 import { FadeIn } from "./FadeIn";
 
@@ -93,12 +94,12 @@ export function Reviews() {
             <p className="font-body text-warm-gray text-sm mb-4">
               5-star service across {primaryTown()} and nearby towns
             </p>
-            <a
-              href="#contact"
+            <Link
+              href="/contact"
               className="inline-flex items-center gap-2 bg-brand text-white font-display font-bold uppercase tracking-wide text-base px-8 py-4 hover:bg-brand-dark transition-colors duration-200"
             >
               Join Our Happy Customers
-            </a>
+            </Link>
           </div>
         </FadeIn>
       </div>

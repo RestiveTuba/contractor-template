@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { primaryTown, serviceArea, yearsLabel } from "@/src/site.helpers";
 import { FadeIn } from "./FadeIn";
@@ -115,12 +116,12 @@ export function WhyUs() {
             </div>
 
             <FadeIn delay={0.4}>
-              <a
-                href="#contact"
+              <Link
+                href="/contact"
                 className="mt-10 inline-flex items-center gap-2 bg-charcoal text-white font-display font-bold uppercase tracking-wide text-base px-7 py-4 hover:bg-brand transition-colors duration-200"
               >
                 Get a Free Estimate
-              </a>
+              </Link>
             </FadeIn>
           </div>
         </div>

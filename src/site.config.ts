@@ -26,6 +26,9 @@ export type SiteConfig = {
   galleryPhotos?: string[];
   pexelsImages?: string[];
   serviceImages?: Record<string, string[]>;
+  heroImage?: string;
+  whyUsImage?: string;
+  serviceDetails?: Record<string, { included: string[]; materials: string[]; blurb: string }>;
 };
 
 export const siteConfig: SiteConfig = {

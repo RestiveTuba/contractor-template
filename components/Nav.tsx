@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Phone, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { brandNameParts, config, phoneHref } from "@/src/site.helpers";
@@ -16,10 +17,9 @@ export function Nav() {
   }, []);
 
   const links = [
-    { label: "Services", href: "#services" },
-    { label: "Why Us", href: "#why-us" },
-    { label: "Reviews", href: "#reviews" },
-    { label: "Contact", href: "#contact" },
+    { label: "Services", href: "/services" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
   ];
   const name = brandNameParts();
 
@@ -34,8 +34,8 @@ export function Nav() {
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-8 h-16 sm:h-20 flex items-center justify-between">
           {/* Logo */}
-          <a
-            href="#"
+          <Link
+            href="/"
             className="font-display text-2xl sm:text-3xl font-black tracking-wide text-white uppercase leading-none"
             aria-label="Home"
           >
@@ -48,18 +48,18 @@ export function Nav() {
                 {name.rest && <span className="text-white ml-1.5">{name.rest}</span>}
               </>
             )}
-          </a>
+          </Link>
 
           {/* Desktop: nav links + phone */}
           <nav className="hidden lg:flex items-center gap-8">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-sm font-body text-white/70 hover:text-white transition-colors tracking-wide uppercase font-medium"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -103,14 +103,14 @@ export function Nav() {
         <div className="h-16 sm:h-20" /> {/* spacer behind sticky nav */}
         <nav className="flex flex-col items-center justify-center flex-1 gap-8 px-8">
           {links.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
               className="font-display font-black text-5xl uppercase text-white hover:text-brand transition-colors tracking-wide"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           <div className="mt-4 border-t border-white/10 pt-8 w-full flex flex-col items-center gap-2">
             <a

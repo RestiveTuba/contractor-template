@@ -102,3 +102,14 @@ export function siteDescription() {
   const years = yearsLabel();
   return `${config.businessName} serves ${area}${services ? ` with ${services}` : ""}. ${years} in business. Call for a free estimate.`;
 }
+
+export function slugify(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function serviceBySlug(slug: string) {
+  return config.services.find((s) => slugify(s) === slug);
+}

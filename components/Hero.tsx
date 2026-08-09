@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Phone, ChevronDown } from "lucide-react";
 import { brandNameParts, config, establishedLabel, phoneHref, primaryCity, primaryTown, yearsLabel } from "@/src/site.helpers";
 
@@ -96,13 +97,13 @@ export function Hero() {
             Call Now — {config.phone}
           </a>
 
-          {/* Secondary CTA — scroll to form */}
-          <a
-            href="#contact"
+          {/* Secondary CTA */}
+          <Link
+            href="/contact"
             className="inline-flex items-center gap-2 border border-white/50 hover:border-white text-white hover:bg-white/5 font-display font-bold uppercase tracking-wide text-base sm:text-lg px-7 py-4 transition-all duration-200"
           >
             Get a Free Quote
-          </a>
+          </Link>
         </motion.div>
       </div>
 
